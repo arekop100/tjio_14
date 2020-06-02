@@ -57,30 +57,6 @@ final class UserId implements UserIdChecker {
         }
         return false;
     }
-    private String getFullDate() {
-        int[] idInts = getIdAsIntArray();
-        int year = (idInts[0] * 10) + idInts[1];
-
-        int month = (idInts[2] * 10) + idInts[3] ;
-
-        if (month > 80 && month < 93) {
-            year += 1800;
-        }
-        else if (month > 0 && month < 13) {
-            year += 1900;
-        }
-        else if (month > 20 && month < 33) {
-            year += 2000;
-        }
-        else if (month > 40 && month < 53) {
-            year += 2100;
-        }
-        else if (month > 60 && month < 73) {
-            year += 2200;
-        }
-
-        return getDay((idInts[4] * 10) + idInts[5]) + "-" + getMonth(month) + "-" +year;
-    }
 
     private String getMonth(int month) {
         if (month > 80 && month < 93) {
@@ -106,6 +82,31 @@ final class UserId implements UserIdChecker {
             return '0'+String.valueOf(day);
         }
         return String.valueOf(day);
+    }
+
+    private String getFullDate() {
+        int[] idInts = getIdAsIntArray();
+        int year = (idInts[0] * 10) + idInts[1];
+
+        int month = (idInts[2] * 10) + idInts[3] ;
+
+        if (month > 80 && month < 93) {
+            year += 1800;
+        }
+        else if (month > 0 && month < 13) {
+            year += 1900;
+        }
+        else if (month > 20 && month < 33) {
+            year += 2000;
+        }
+        else if (month > 40 && month < 53) {
+            year += 2100;
+        }
+        else if (month > 60 && month < 73) {
+            year += 2200;
+        }
+
+        return getDay((idInts[4] * 10) + idInts[5]) + "-" + getMonth(month) + "-" +year;
     }
 
     private String[] getIdStringArray(){
